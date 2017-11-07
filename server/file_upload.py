@@ -22,14 +22,12 @@ app.logger.addHandler(handler)
 
 @app.before_request
 def before_request():
-    # 可以做一些权限限制, 比如限制IP
-    if not request.headers.getlist('X-Forwarded-For'):
-        ip = request.remote_addr
+    # 可以做一些权限限制, 比如一个随机参数
+    r = request.args.get('r', '')
+    if r == 'your random string':
+        return
     else:
-        ip = request.headers.getlist('X-Forwarded-For')[0]
-    if ip not in ['可以上传文件的ip']:
-        return 'no permission - %s' % ip
-
+        return 'no permission'
 
 @app.route('/', methods=['GET', 'POST'])
 def upload_file():

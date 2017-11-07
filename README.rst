@@ -18,18 +18,16 @@ server使用flask框架开发,推荐使用guicorn运行
 
 在浏览器访问 http://ip:port/ 出现test则可以访问
 
-处于安全, 会限制上传的ip,
-在文件 file\_upload.py 修改限制或者去除限制::
+在文件 server/file\_upload.py 修改限制(切记替换掉your random string)::
 
     @app.before_request
     def before_request():
-        #可以做一些权限限制, 比如限制IP
-        if not request.headers.getlist('X-Forwarded-For'):
-            ip = request.remote_addr
+        # 可以做一些权限限制, 比如一个随机参数
+        r = request.args.get('r', '')
+        if r == 'your random string':
+            return
         else:
-            ip = request.headers.getlist('X-Forwarded-For')[0]
-        if ip not in ['可以上传文件的ip']:
-            return 'no permission - %s' % ip
+            return 'no permission'
 
 如果使用supervisor启动, 像下面配置(替换成自己的路径): file-upload-server.ini
 
