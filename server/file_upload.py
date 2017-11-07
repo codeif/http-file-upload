@@ -11,7 +11,7 @@ app.debug = False
 
 # log to file
 app.logger.setLevel(logging.INFO)
-log_path = os.path.join(os.path.dirname(__file__), 'logs/web.log')
+log_path = os.path.join(os.path.dirname(__file__), 'web.log')
 handler = RotatingFileHandler(log_path, maxBytes=10*1024*1024, backupCount=1)
 handler.setLevel(logging.INFO)
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s'
