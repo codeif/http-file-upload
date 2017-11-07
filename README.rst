@@ -6,7 +6,7 @@ vim, sublime文本编辑起可以直接上传到服务器配置路径
 server install
 ---------------
 
-server使用flask框架开发, 运行在tornado下
+server使用flask框架开发,推荐使用guicorn运行
 
 安装依赖::
 
@@ -14,11 +14,11 @@ server使用flask框架开发, 运行在tornado下
 
 启动::
 
-    python tornado_app.py
+    gunicorn -w 2 -b 0.0.0.0:8888 file_upload:app
 
 在浏览器访问 http://ip:port/ 出现test则可以访问
 
-处于安全, 会限制上传的IP,
+处于安全, 会限制上传的ip,
 在文件 file\_upload.py 修改限制或者去除限制::
 
     @app.before_request
