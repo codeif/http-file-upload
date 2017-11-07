@@ -1,7 +1,7 @@
 http-upload-file
 =================
 
-vim, sublime文本编辑起可以直接上传到服务器配置路径
+vim, sublime文本编辑起可以直接保存文件到服务器配置的路径
 
 server install
 ---------------
